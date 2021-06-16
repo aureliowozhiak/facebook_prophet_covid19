@@ -7,3 +7,5 @@
 
 ## Análisando a série temporal dos casos de Corona Virus no Brasil e criando previsões<sup>*</sup> com o Facebook Prophet
 
+
+  <a href="https://nbviewer.jupyter.org/github/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/Facebook_Prophet_e_os_casos_de_COVID_19.ipynb">![](https://img.shields.io/badge/acessar_projeto-02569B?style=for-the-badge&logo=open&logoColor=white)<a/>
