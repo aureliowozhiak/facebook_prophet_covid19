@@ -61,5 +61,5 @@ def grafico_linha(titulo = 'Total de mortes por COVID-19',
   ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
   ax.set_xlabel(x_label)
   
-  def teste():
-    print('testeee')
+def teste():
+  print('testeee')
