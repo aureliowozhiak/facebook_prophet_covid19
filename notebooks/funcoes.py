@@ -12,6 +12,7 @@ from sklearn.metrics import mean_absolute_error
 from fbprophet.diagnostics import cross_validation
 from fbprophet.diagnostics import performance_metrics
 
+#função para processamento de dados
 def processamento_dados():
   #lendo csv e atribuindo a um dataframe (formato do dataset do pandas)
   df_casos_full = pd.read_csv('https://github.com/aureliowozhiak/facebook_prophet_covid19/raw/main/datasets/caso_full.csv.gz') 
@@ -39,6 +40,13 @@ def processamento_dados():
   return df_casos_full, df_casos_full_reduced, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities
 
 df_casos_full, df_casos_full_reduced, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities = processamento_dados()
+
+
+
+#parametros para padronizar gráficos
+mpl.rcParams['font.size'] = 18
+mpl.rcParams['figure.figsize'] = (15,8)
+
 
 #função padrão para gerar gráficos de linha
 def grafico_linha(titulo = 'Total de mortes por COVID-19',
