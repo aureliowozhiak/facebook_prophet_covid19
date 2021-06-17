@@ -44,9 +44,6 @@ def processamento_dados():
 
 df_casos_full, df_casos_full_reduced, df_casos_sul, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities = processamento_dados()
 
-#parametros para padronizar gráficos
-mpl.rcParams['font.size'] = 18
-mpl.rcParams['figure.figsize'] = (15,8)
 
 
 #função padrão para gerar gráficos de linha
@@ -60,6 +57,11 @@ def grafico_linha(titulo = 'Total de mortes por COVID-19',
                   df_y = 'last_available_deaths',
                   hue = 'city',
                   palette_color = 'autumn'):
+
+
+  #parametros para padronizar gráficos
+  mpl.rcParams['font.size'] = 18
+  mpl.rcParams['figure.figsize'] = (15,8)
 
   ax = sns.lineplot(data=df, x=df_x, y=df_y, hue=hue, palette=palette_color)
   plt.legend(title=titulo_legenda)
