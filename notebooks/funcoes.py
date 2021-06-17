@@ -26,6 +26,9 @@ def processamento_dados():
   #reduzindo dataframe para colunas especificas
   df_casos_full_reduced = df_casos_full[['city', 'state', 'date', 'estimated_population', 'new_confirmed', 'last_available_confirmed', 'new_deaths', 'last_available_deaths']]
 
+  #isolando um dataframe com casos dos estados do sul
+  df_casos_sul = df_casos_full_reduced.query('state == "PR" or state == "SC" or state == "RS"')
+
   #isolando um dataframe com casos do estado do Paraná
   df_casos_parana = df_casos_full_reduced.query('state == "PR"')
 
@@ -37,11 +40,9 @@ def processamento_dados():
   rmc_top_cities = df_casos_rmc[['city', 'last_available_deaths', 'date']].query('date == "2021-06-15 00:00:00"').sort_values(by='last_available_deaths', ascending=False)[:3]['city'].to_list()
   df_rmc_top_cities = df_casos_rmc.query('city == @rmc_top_cities')
 
-  return df_casos_full, df_casos_full_reduced, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities
+  return df_casos_full, df_casos_full_reduced, df_casos_sul, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities
 
-df_casos_full, df_casos_full_reduced, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities = processamento_dados()
-
-
+df_casos_full, df_casos_full_reduced, df_casos_sul, df_casos_parana, df_casos_rmc, df_casos_cwb, rmc_top_cities, df_rmc_top_cities = processamento_dados()
 
 #parametros para padronizar gráficos
 mpl.rcParams['font.size'] = 18
