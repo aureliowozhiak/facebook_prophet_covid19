@@ -26,7 +26,7 @@
  - Referências
 
  
-  <a href="https://nbviewer.jupyter.org/github/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/Facebook_Prophet_e_os_casos_de_COVID_19.ipynb">![](https://img.shields.io/badge/acessar_projeto_no_nbviewer-02569B?style=for-the-badge&logo=open&logoColor=white)<a/><br/> 
+  <a href="https://nbviewer.jupyter.org/github/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/Facebook_Prophet_e_os_casos_de_COVID_19.ipynb">![](https://img.shields.io/badge/open_in_nbviewer-02569B?style=for-the-badge&logo=open&logoColor=white)<a/><br/> 
  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
 
 ---
