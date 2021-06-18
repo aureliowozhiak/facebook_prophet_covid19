@@ -25,6 +25,10 @@
  - Conclusão
  - Referências
 
+ 
+  <a href="https://nbviewer.jupyter.org/github/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/Facebook_Prophet_e_os_casos_de_COVID_19.ipynb">![](https://img.shields.io/badge/acessar_projeto_no_nbviewer-02569B?style=for-the-badge&logo=open&logoColor=white)<a/><br/> 
+ <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+
 ---
 ### 🎯 Objetivo do projeto
 
@@ -57,3 +61,36 @@ Em fevereiro de 2017 o Facebook Research lançou a ferramenta open source chamad
 Como essa ferramenta, também é possível entender sazonalidades que impactam a série temporal e análisar mudanças bruscas de tendência e outliers
 
 Essa ferramenta está [disponível no GitHub](https://github.com/facebook/prophet) para ser utilizada com Python ou R.
+
+---
+#### 📝 Origem dos dados e informações técnicas
+
+Os dados utilizados foram baixados do [brasil.io](https://brasil.io/home) > [COVID-19](https://brasil.io/covid19/) > [Dados completos](https://brasil.io/dataset/covid19/caso_full/)<br />
+<sub>link direto para download: [https://data.brasil.io/dataset/covid19/caso_full.csv.gz](https://data.brasil.io/dataset/covid19/caso_full.csv.gz)</sub><br/><br/>
+
+
+
+Após acessar e efetuar o download do dataset completo, efetuei uma cópia e salvei no repositório do GitHub em "datasets/caso_full.csv.gz"<br/>
+<sub>cópia salva no repositório dia: 16/06/2021: [https://github.com/aureliowozhiak/facebook_prophet_covid19/blob/main/datasets/caso_full.csv.gz](https://github.com/aureliowozhiak/facebook_prophet_covid19/blob/main/datasets/caso_full.csv.gz) </sub>
+
+
+O dataset original contém várias colunas com os valores: 
+
+> 'city', 'city_ibge_code', 'date', 'epidemiological_week', 'estimated_population', 'estimated_population_2019', 'is_last', 'is_repeated', 'last_available_confirmed', 'last_available_confirmed_per_100k_inhabitants', 'last_available_date', 'last_available_death_rate', 'last_available_deaths', 'order_for_place', 'place_type', 'state', 'new_confirmed', 'new_deaths'
+
+Porém, aqui vamos utilizar apenas os seguintes:
+
+- **city**: nome da cidade
+- **state**: nome do estado
+- **date**: data do registro
+- **estimated_population**: população estimada da cidade
+- **new_confirmed**: novos casos confirmados
+- **last_available_confirmed**: total acumulado de casos confirmados até a data
+- **new_deaths**: novas mortes confirmadas
+- **last_available_deaths**: total acumulado de mortes confirmadas até a data
+
+---
+
+#### 👨‍💻 Carregamento e Processamento dos dados
+
+Todo carregamento, processamento e organização dos dados foram feitos no arquivo [funcoes.py](https://github.com/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/funcoes.py) 
