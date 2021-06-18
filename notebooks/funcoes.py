@@ -26,6 +26,13 @@ def processamento_dados():
   #reduzindo dataframe para colunas especificas
   df_casos_full_reduced = df_casos_full[['city', 'state', 'date', 'estimated_population', 'new_confirmed', 'last_available_confirmed', 'new_deaths', 'last_available_deaths']]
 
+  #criando média móvel
+  df_casos_full_reduced['moving_average_confirmed'] = df_casos_full_reduced['last_available_confirmed'].rolling(window=7, center=False).mean()
+  df_casos_full_reduced['moving_average_deaths'] = df_casos_full_reduced['last_available_deaths'].rolling(window=7, center=False).mean()
+
+  df_casos_full_reduced['moving_average_new_confirmed'] = df_casos_full_reduced['new_confirmed'].rolling(window=7, center=False).mean()
+  df_casos_full_reduced['moving_average_new_deaths'] = df_casos_full_reduced['new_deaths'].rolling(window=7, center=False).mean()
+
   #isolando um dataframe com casos dos estados do sul
   df_casos_sul = df_casos_full_reduced.query('state == "PR" or state == "SC" or state == "RS"')
 
@@ -48,7 +55,7 @@ df_casos_full, df_casos_full_reduced, df_casos_sul, df_casos_parana, df_casos_rm
 
 #função padrão para gerar gráficos de linha
 def grafico_linha(titulo = 'Total de mortes por COVID-19',
-                  subtitle = 'nas 3 cidades com mais casos no Paraná',
+                  subtitle = 'por data de registro nas 3 cidades com maior número de casos no Paraná',
                   titulo_legenda = 'Cidades',
                   y_label = 'Acumulado total',
                   x_label = 'Meses/Ano',
