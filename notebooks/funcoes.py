@@ -78,3 +78,43 @@ def grafico_linha(titulo = 'Total de mortes por COVID-19',
   ax.set_ylabel(y_label)
   ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
   ax.set_xlabel(x_label)
+
+
+  #funções para forecasting:
+
+def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_available_deaths', dados_treino = 400, periodo_previsao = 100):
+  df = pd.DataFrame()
+  df_teste = pd.DataFrame()
+
+  df['ds'] = dataframe[ds][:dados_treino]
+  df['y'] = dataframe[y][:dados_treino]
+
+  df_teste['ds'] = dataframe[ds][dados_treino:(dados_treino+periodo_previsao)]
+  df_teste['y'] = dataframe[y][dados_treino:(dados_treino+periodo_previsao)]
+
+  modelo = Prophet(n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.9, yearly_seasonality=False, daily_seasonality=False);
+
+  modelo.fit(df);
+
+  previsao = modelo.predict(modelo.make_future_dataframe(periods=periodo_previsao));
+
+  return modelo, previsao, df_teste
+
+
+def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
+
+  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
+
+  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y);
+  plt.title(titulo);
+  plt.plot(df_teste['ds'], df_teste['y'],'.r');
+
+
+def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
+
+  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
+
+  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y);
+  plt.title(titulo);
+  plt.plot(df_teste['ds'], df_teste['y'],'.r');
+  add_changepoints_to_plot(ax.gca(), modelo, previsao);
