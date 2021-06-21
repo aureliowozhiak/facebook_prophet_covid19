@@ -82,7 +82,7 @@ def grafico_linha(titulo = 'Total de mortes por COVID-19',
 
   #funções para forecasting:
 
-def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_available_deaths', dados_treino = 400, periodo_previsao = 100, n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
+def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_available_deaths', dados_treino = 400, periodo_previsao = 100, n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.83):
   df = pd.DataFrame()
   df_teste = pd.DataFrame()
 
@@ -92,7 +92,7 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   df_teste['ds'] = dataframe[ds][dados_treino:(dados_treino+periodo_previsao)]
   df_teste['y'] = dataframe[y][dados_treino:(dados_treino+periodo_previsao)]
 
-  modelo = Prophet(n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83, yearly_seasonality=False, daily_seasonality=False);
+  modelo = Prophet(n_changepoints = n_changepoints_, changepoint_prior_scale = changepoint_prior_scale_, changepoint_range = changepoint_range_, yearly_seasonality=False, daily_seasonality=False);
 
   modelo.fit(df);
 
@@ -101,9 +101,9 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   return modelo, previsao, df_teste
 
 
-def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas', n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
+def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.83):
 
-  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
+  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo, n_changepoints_, changepoint_prior_scale_, changepoint_range_);
 
   ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
 
@@ -113,9 +113,9 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
   plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
 
 
-def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas', n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
+def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.83):
 
-  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
+  modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo, n_changepoints_, changepoint_prior_scale_, changepoint_range_);
 
   ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
 
