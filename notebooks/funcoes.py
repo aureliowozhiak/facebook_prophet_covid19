@@ -101,7 +101,7 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   return modelo, previsao, df_teste
 
 
-def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.83):
+def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.89):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo, n_changepoints_= n_changepoints_, changepoint_prior_scale_ = changepoint_prior_scale_, changepoint_range_ = changepoint_range_);
 
@@ -113,7 +113,7 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
   plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
 
 
-def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.83):
+def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas', n_changepoints_ = 30, changepoint_prior_scale_ = 1.0, changepoint_range_ = 0.89):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo, n_changepoints_= n_changepoints_, changepoint_prior_scale_ = changepoint_prior_scale_, changepoint_range_ = changepoint_range_);
 
