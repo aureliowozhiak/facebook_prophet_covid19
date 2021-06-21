@@ -92,7 +92,7 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   df_teste['ds'] = dataframe[ds][dados_treino:(dados_treino+periodo_previsao)]
   df_teste['y'] = dataframe[y][dados_treino:(dados_treino+periodo_previsao)]
 
-  modelo = Prophet(n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.9, yearly_seasonality=False, daily_seasonality=False);
+  modelo = Prophet(n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83, yearly_seasonality=False, daily_seasonality=False);
 
   modelo.fit(df);
 
@@ -101,7 +101,7 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   return modelo, previsao, df_teste
 
 
-def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
+def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas'):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
@@ -111,9 +111,9 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
   plt.plot(df_teste['ds'], df_teste['y'],'--r', label='Daddos de teste');
 
   plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
-  
 
-def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
+
+def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas'):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
