@@ -123,3 +123,4 @@ def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_dea
   plt.plot(df_teste['ds'], df_teste['y'],'.r', label='Daddos de teste');
 
   add_changepoints_to_plot(ax.gca(), modelo, previsao);
+
