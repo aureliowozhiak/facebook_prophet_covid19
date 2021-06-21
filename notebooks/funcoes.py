@@ -105,16 +105,21 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
-  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y);
+  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
+
   plt.title(titulo);
-  plt.plot(df_teste['ds'], df_teste['y'],'.r');
+
+  plt.plot(df_teste['ds'], df_teste['y'],'.r', label='Daddos de teste');
 
 
 def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
-  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y);
+  ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
+
   plt.title(titulo);
-  plt.plot(df_teste['ds'], df_teste['y'],'.r');
+  
+  plt.plot(df_teste['ds'], df_teste['y'],'.r', label='Daddos de teste');
+
   add_changepoints_to_plot(ax.gca(), modelo, previsao);
