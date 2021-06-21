@@ -82,7 +82,7 @@ def grafico_linha(titulo = 'Total de mortes por COVID-19',
 
   #funções para forecasting:
 
-def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_available_deaths', dados_treino = 400, periodo_previsao = 100):
+def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_available_deaths', dados_treino = 400, periodo_previsao = 100, n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
   df = pd.DataFrame()
   df_teste = pd.DataFrame()
 
@@ -101,7 +101,7 @@ def return_modelo_previsao(dataframe = df_casos_cwb, ds = 'date', y = 'last_avai
   return modelo, previsao, df_teste
 
 
-def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas'):
+def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total de mortes', titulo = 'Previsão de mortes totais acumuladas', n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
@@ -113,7 +113,7 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
   plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
 
 
-def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas'):
+def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de mortes totais acumuladas', n_changepoints = 30, changepoint_prior_scale = 1.0, changepoint_range = 0.83):
 
   modelo, previsao, df_teste = return_modelo_previsao(dataframe = df_casos_cwb, ds = ds_eixo, y = y_eixo);
 
@@ -125,3 +125,4 @@ def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_dea
   plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
 
   add_changepoints_to_plot(ax.gca(), modelo, previsao);
+
