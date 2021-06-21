@@ -108,9 +108,10 @@ def treinar_e_plotar(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y
   ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
 
   plt.title(titulo);
+  plt.plot(df_teste['ds'], df_teste['y'],'--r', label='Daddos de teste');
 
-  plt.plot(df_teste['ds'], df_teste['y'],'.r', label='Daddos de teste');
-
+  plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
+  
 
 def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_deaths', label_y = 'Acumulado total', titulo = 'Previsão de casos acumulados'):
 
@@ -119,8 +120,8 @@ def treinar_e_plotar_changepoints(ds_eixo = 'date', y_eixo = 'last_available_dea
   ax = modelo.plot(previsao,xlabel = 'Mês/Ano', ylabel=label_y, figsize=(15,8));
 
   plt.title(titulo);
-  
-  plt.plot(df_teste['ds'], df_teste['y'],'.r', label='Daddos de teste');
+  plt.plot(df_teste['ds'], df_teste['y'],'--r', label='Daddos de teste');
+
+  plt.gca().legend(('Dados de treino','Previsão do modelo', 'Dados comparativos para treino'))
 
   add_changepoints_to_plot(ax.gca(), modelo, previsao);
-
