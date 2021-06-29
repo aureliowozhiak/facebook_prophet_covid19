@@ -30,6 +30,7 @@
  
  <a href="https://colab.research.google.com/github/aureliowozhiak/facebook_prophet_covid19/blob/main/notebooks/Facebook_Prophet_e_os_casos_de_COVID_19.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
+<sub><sup> *As previsões criadas aqui pelo Prophet não são exatas pois não mostram de fato o cenário futuro do corona virus, pois os dados utilizados apenas nos dão uma visão, com base no que aconteceu no passado, para termos uma noção de qual poderia ser a tendência de crescimento dos casos, porém, como os dados não exprimem o cenário completo e não leva em conta campanhas futuras de vacinação, que já estão acontecendo, não devemos levar essas conclusões como se fossem verdades absolutas.</sup></sub>
 ---
 ### 🎯 Objetivo do projeto
 
