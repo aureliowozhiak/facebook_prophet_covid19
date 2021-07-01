@@ -21,7 +21,6 @@
  - Análisando a série temporal dos casos de COVID-19 em Curitiba-PR
  - Criando o modelo de previsão
  - Plotando as previsões com o Prophet<sup>*</sup>
- - Pesquisa complementar
  - Conclusão
  - Referências
 
